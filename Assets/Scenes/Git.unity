@@ -268,9 +268,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203f78f5bc11ddd48aa3aa4b7f40b384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
-  jumForce: 10
+  speed: 0.5
+  jumpForce: 50
   inputVector: {x: 0, y: 0}
+  rigdBody: {fileID: 0}
+  Velocity: {x: 0, y: 0, z: 0}
+  velocityMagnitude: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +311,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -358,7 +361,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.07, y: 3.26, z: -10.71}
+  m_LocalPosition: {x: 10.34, y: 7.75, z: -14.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

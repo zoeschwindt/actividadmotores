@@ -7,13 +7,16 @@ public class RigidBodyMoment : MonoBehaviour
     // Start is called before the first frame update
 
     public float speed;
-    public float jumForce;
+    public float jumpForce;
     public Vector2 inputVector;
-    private Rigidbody rb;
+    public Rigidbody rigdBody;
+    public Vector3 Velocity;
+    public float velocityMagnitude;
+
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rigdBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -22,12 +25,16 @@ public class RigidBodyMoment : MonoBehaviour
         inputVector.x = Input.GetAxis("Horizontal");
         inputVector.y = Input.GetAxis("Vertical");
 
-        rb.AddForce(new Vector3(inputVector.x * speed, 0f, inputVector.y * speed), ForceMode.Impulse);
+        rigdBody.AddForce(inputVector.x * speed, 0f, inputVector.y * speed, ForceMode.Impulse);
+
+        Velocity = rigdBody.velocity;
+        velocityMagnitude = Velocity.magnitude;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector3.up * jumForce, ForceMode.Impulse);
+            rigdBody.AddForce(0f, jumpForce, 0f, ForceMode.Impulse);
         }
         
     }
 }
+
