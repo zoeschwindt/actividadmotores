@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RigidBodyMoment : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class RigidBodyMoment : MonoBehaviour
     public bool CanJump;
 
     public int collectedItems;
+
+    public TMPro.TextMeshProUGUI scoreText;
 
 
     void Start()
@@ -69,6 +72,7 @@ public class RigidBodyMoment : MonoBehaviour
         {
             Destroy(contraloQueChoque.gameObject);
             collectedItems++;
+            scoreText.text = collectedItems.ToString();
         }
 
     
