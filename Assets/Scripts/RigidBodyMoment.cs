@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,15 +18,30 @@ public class RigidBodyMoment : MonoBehaviour
     public float velocityMagnitude;
     public bool CanJump;
 
+    public GameObject goal;
+
     public int collectedItems;
+    public int totalItems;
 
     public TMPro.TextMeshProUGUI scoreText;
+    public TMPro.TextMeshProUGUI warningText;
 
 
     void Start()
     {
+        totalItems = GameObject.FindGameObjectsWithTag("Item").Length;
+
+        warningText.enabled = false;
         rigdBody = GetComponent<Rigidbody>();
         CanJump = true;
+
+        UpdateScore();
+    }
+
+    private void UpdateScore()
+    {
+        // Update score in screen
+        scoreText.text = collectedItems + " / " + totalItems;
     }
 
     // Update is called once per frame
@@ -41,12 +57,12 @@ public class RigidBodyMoment : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.Space)&& CanJump)
+        if (Input.GetKeyDown(KeyCode.Space) && CanJump)
         {
             rigdBody.AddForce(0f, jumpForce, 0f, ForceMode.Impulse);
             CanJump = false;
         }
-        
+
     }
     private void OnCollisionEnter(Collision contraloQueChoque)
     {
@@ -72,9 +88,14 @@ public class RigidBodyMoment : MonoBehaviour
         {
             Destroy(contraloQueChoque.gameObject);
             collectedItems++;
-            scoreText.text = collectedItems.ToString();
+            UpdateScore();
+
+            if (collectedItems == totalItems)
+            {
+                goal.SetActive(true);
+            }
         }
 
-    
     }
 }
+   
